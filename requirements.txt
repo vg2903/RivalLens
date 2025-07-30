@@ -2,9 +2,7 @@ streamlit
 openai
 google-auth
 google-api-python-client
-beautifulsoup4
-requests
 pandas
+requests
+bs4
 scikit-learn
-undetected-chromedriver
-selenium

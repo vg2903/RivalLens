@@ -1,12 +1,6 @@
-# RivalLens v2 (Advanced SEO Analyzer)
+# RivalLens Final
 
-## Features Coming:
-- Page & competitor URL analysis
-- GPT and Gemini-based keyword + topic research
-- Semrush & GSC integration for live keyword data
-- Export options + toggles
-
-## How to Use:
-1. Add your API keys in the sidebar
-2. Input your URL (and competitor URL if needed)
-3. View keyword analysis, gaps, and content suggestions
+## Setup
+1. Install dependencies: `pip install -r requirements.txt`
+2. Run: `streamlit run app.py`
+3. Use sidebar to input API keys and upload GSC JSON

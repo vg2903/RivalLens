@@ -1,28 +1,30 @@
 import streamlit as st
-from gsc_utils import get_gsc_data  # Placeholder for GSC integration
 
-st.set_page_config(page_title="RivalLens", layout="wide")
+st.set_page_config(page_title="RivalLens - SEO Analyzer", layout="wide")
 
-st.title("🔍 RivalLens - SEO Audit & Competitor Analyzer")
+# Step 1: API Keys
+st.sidebar.header("🔐 API Keys")
+openai_key = st.sidebar.text_input("OpenAI API Key", type="password")
+gemini_key = st.sidebar.text_input("Gemini API Key", type="password")
+semrush_key = st.sidebar.text_input("Semrush API Key", type="password")
+ahrefs_key = st.sidebar.text_input("Ahrefs API Key", type="password")
+gkp_key = st.sidebar.text_input("Google Keyword Planner API Key", type="password")
+gsc_json = st.sidebar.file_uploader("Upload GSC JSON", type="json")
 
-with st.sidebar:
-    st.header("🔑 API Keys")
-    openai_key = st.text_input("OpenAI API Key", type="password")
-    gemini_key = st.text_input("Gemini API Key", type="password")
-    semrush_key = st.text_input("Semrush API Key", type="password")
-    gsc_json_key = st.file_uploader("GSC Service Account JSON", type="json")
+# Step 2: URL Input
+st.header("🔗 Step 1: Enter Target & Competitor URLs")
+url = st.text_input("Your Page URL")
+competitor_urls = st.text_area("Competitor URLs (one per line)").splitlines()
 
-    st.header("⚙️ Feature Toggles")
-    use_semantic = st.checkbox("Enable Semantic Expansion", value=True)
-    use_competitor = st.checkbox("Enable Competitor Comparison", value=False)
-    use_export = st.checkbox("Enable Export Options", value=True)
+# Step 3: Optional Keyword Upload
+st.header("📥 Step 2: Upload Keyword File (Optional)")
+keyword_file = st.file_uploader("Upload Excel/CSV with keywords", type=["csv", "xlsx"])
 
-st.markdown("### Enter your URLs")
-url = st.text_input("🔗 Your Page URL")
-competitor_url = st.text_input("🥊 Competitor Page URL (optional)")
+# Step 4: Analysis Trigger
+if st.button("🚀 Next: Start Analysis"):
+    if not url:
+        st.warning("Please enter your URL.")
+    else:
+        st.success("All set! In full version, analysis will now run with content scraping, GSC fetch, keyword research, etc.")
 
-if url and openai_key:
-    st.success("🧠 Content analysis and keyword research modules will run here.")
-    st.info("Next step: Integrate GPT, Semrush, GSC logic here.")
-else:
-    st.warning("Please enter your URL and OpenAI API key to proceed.")
+st.markdown("Made with ❤️ by RivalLens")
